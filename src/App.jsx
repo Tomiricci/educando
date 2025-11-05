@@ -6,8 +6,8 @@ const CONTACT_EMAIL = ""        // correo de recepción
 const WHATSAPP_NUMBER = "+5491123843568"   // con código de país, sin espacios
 const GOOGLE_FORMS_URL = ""                // opcional: link a tu Google Forms
 const PRICE_60  = 30000;  // ARS - Clase de 1 hora
-const PRICE_90  = 40000;  // ARS - Clase de 1 hora y media
-const PRICE_120 = 50000;  // ARS - Clase de 2 horas
+const PRICE_90  = 45000;  // ARS - Clase de 1 hora y media
+const PRICE_120 = 60000;  // ARS - Clase de 2 horas
 
 export default function App() {
   const scrollTo = (id) => {
@@ -226,7 +226,7 @@ function Hero({ onCTA }) {
       <div className="mx-auto max-w-6xl px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
         <div>
           <h1 className="text-3xl md:text-5xl font-extrabold leading-tight text-slate-900">
-            Clases particulares para alumnos del <span className="text-blue-700">Newman</span>
+            Clases particulares para alumnos de <span className="text-blue-700">Primaria y Secundaria</span>
           </h1>
           <p className="mt-4 text-lg text-slate-700">
             Exalumnos del colegio, hoy ayudando a los más chicos a aprender mejor. Uno estudia en UDESA y otro en la UTDT. Vamos a tu casa o damos la clase online.
@@ -257,7 +257,7 @@ function About({ id }) {
         <div>
           <h2 className="text-2xl md:text-3xl font-bold text-slate-900">Quiénes somos</h2>
           <p className="mt-4 text-slate-700 leading-relaxed">
-            Somos dos exalumnos del <strong>Colegio Cardenal Newman</strong>. Hoy estudiamos en la <strong>Universidad de San Andrés (UDESA)</strong> y en la <strong>Universidad Torcuato Di Tella (UTDT)</strong>. Nos apasiona enseñar y acompañar a los chicos de primaria del Newman para que ganen confianza y disfruten aprender.
+            Somos dos exalumnos del <strong>Colegio Cardenal Newman</strong>. Hoy estudiamos en la <strong>Universidad de San Andrés (UDESA)</strong> y en la <strong>Universidad Torcuato Di Tella (UTDT)</strong>. Nos apasiona enseñar y acompañar a los chicos de primaria y secundaria para que ganen confianza y disfruten aprender.
           </p>
           <p className="mt-3 text-slate-700">Damos clases personalizadas, adaptadas al ritmo de cada alumno, y coordinamos horarios flexibles en el barrio.</p>
         </div>
@@ -410,7 +410,7 @@ const onSubmit = (e) => {
   e.preventDefault()
   const form = new FormData(e.currentTarget)
   const nombre = form.get('nombre')
-  const edad = form.get('edad')
+  const grado = form.get('grado')
   const materia = form.get('materia')
   const tipoClase = form.get('tipoClase'); // 60 | 90 | 120
   const fecha = form.get('fecha')
@@ -430,7 +430,7 @@ const onSubmit = (e) => {
   `Nueva reserva — Educando` +
   `Tipo de clase: ${etiquetaTipo} (${precio.toLocaleString('es-AR',{style:'currency',currency:'ARS'})})%0A` +
   `Nombre: ${nombre}%0A` +
-  `Edad: ${edad}%0A` +
+  `Edad: ${grado}%0A` +
   `Materia: ${materia}%0A` +
   `Día/hora preferida: ${fecha} ${hora}%0A` +
   `Dirección: ${direccion}%0A` +
@@ -460,8 +460,30 @@ const onSubmit = (e) => {
             <input name="nombre" required placeholder="Ej: Juan Pérez" className="mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600" />
           </div>
           <div>
-            <label className="text-sm font-medium">Grado</label>
-            <input name="edad" type="number" min="1" max="6" required placeholder="Ej: 9" className="mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600" />
+            <label className="text-sm font-medium">Grado/Año</label>
+            <select
+            name="grado"
+            required
+            className="mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+            defaultValue=""
+          >
+            <option value="" disabled>Elegí una opción</option>
+            <optgroup label="Primaria">
+              <option value="1° Primaria">1° Primaria</option>
+              <option value="2° Primaria">2° Primaria</option>
+              <option value="3° Primaria">3° Primaria</option>
+              <option value="4° Primaria">4° Primaria</option>
+              <option value="5° Primaria">5° Primaria</option>
+              <option value="6° Primaria">6° Primaria</option>
+            </optgroup>
+            <optgroup label="Secundaria">
+              <option value="1° Secundaria">1° Secundaria</option>
+              <option value="2° Secundaria">2° Secundaria</option>
+              <option value="3° Secundaria">3° Secundaria</option>
+              <option value="4° Secundaria">4° Secundaria</option>
+              <option value="5° Secundaria">5° Secundaria</option>
+            </optgroup>
+          </select>          
           </div>
 
           <div>
